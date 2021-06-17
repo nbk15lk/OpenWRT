@@ -7,16 +7,18 @@ All credit goes to:  https://divested.dev/unofficial-openwrt-builds/mvebu-linksy
 These are just minor modifications that suit my specific needs
 
 # How to Build
+```
 git clone https://git.openwrt.org/openwrt/openwrt.git
 git clone https://github.com/divestedcg/Divested-WRT.git
+git clone https://github.com/nbk15lk/OpenWRT.git
 cd openwrt
 git config pull.rebase true
 ./scripts/feeds update -a
 ./scripts/feeds install -a
-wget -O .config https://divested.dev/unofficial-openwrt-builds/mvebu-linksys/latest/config
-git am ../Divested-WRT/patches/*.patch
+cp ../OpenWRT/latest/config .config
+git am ../OpenWRT/patches/*.patch
 make defconfig  # make nconfig # make your changes and save
-# sed -i "s/CONFIG_TARGET_PREINIT_IP.*/CONFIG_TARGET_PREINIT_IP=\"192.168.1.5\"/" .config
 make download -j4
 make -j16
+```
 
